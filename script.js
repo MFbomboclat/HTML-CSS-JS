@@ -7,10 +7,11 @@ function addTarea() {
         "<li><h3>"+t+"<input type='checkbox'></input></h3></li>";
     }
 }
-const del = document.getElementById("delete");
-del.addEventListener("click",delTarea);
 function delTarea(event) {
-    let t = document.getElementById("task");
-    let lTask = t.lastChild;
-    t.removeChild(lTask);
+    let tareaElement = event.target.parentNode.parentNode;
+    tareaElement.remove();
+}
+function markAsDone(event) {
+    let tareaElement = event.target.parentNode.parentNode;
+    tareaElement.classList.add("done");
 }
