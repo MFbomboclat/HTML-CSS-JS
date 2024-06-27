@@ -3,15 +3,23 @@ tar.addEventListener("click",addTarea);
 function addTarea() {
     let t = document.getElementById("taskInput").value;
     if (t!="") {
-        document.getElementById("task").innerHTML += 
-        "<li><h3>"+t+"<input type='checkbox'></input></h3></li>";
+        let tarea = "<li><h3>"+t+"<button class='delete'>BORRAR</button><button class='done'>TERMINADO</button></h3></li>";
+        let tareaElement = document.createElement("div");
+        tareaElement.innerHTML = tarea;
+        document.getElementById("task").appendChild(tareaElement);
+
+        let deleteButton = tareaElement.querySelector(".delete");
+        deleteButton.addEventListener("click", delTarea);
+
+        let doneButton = tareaElement.querySelector(".done");
+        doneButton.addEventListener("click", done);
     }
 }
 function delTarea(event) {
     let tareaElement = event.target.parentNode.parentNode;
     tareaElement.remove();
 }
-function markAsDone(event) {
+function done(event) {
     let tareaElement = event.target.parentNode.parentNode;
     tareaElement.classList.add("done");
 }
